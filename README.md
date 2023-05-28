@@ -44,9 +44,7 @@ Here is the pipeline for processing, encoding data, and prediction.
 
 
 ### For prediction
-```
-python prediction.py -f "/mnt/public2/jiangl/Projects/CodonBERT/test_data/test_five.fasta" -o "/mnt/public2/jiangl/Projects/CodonBERT/test_data/result_data/test_five_result.fasta"
-```
+
 
 ### For preprocessing
 
@@ -74,7 +72,7 @@ We use `XX.py` to convert
 ### step 3 prediction
 
 ```bash
-python predict.py --in <where-is-protein.fa> --out <target-dir-to-out.fa>
+python prediction.py -f <where-is-protein.fa> -o <target-dir-to-out.fa>
 ```
 
 
