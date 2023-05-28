@@ -1,4 +1,82 @@
-# ProteinBert_model
+# CodonBERT
+
+This is the code for the article "XXXX". The model is inspired by ProteinBERT and build by Lili Jiang@NENU.
+
+
+## Table of Contents
+
+- [CodonBERT](#codonbert)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+    - [Dependencies](#dependencies)
+  - [Usage](#usage)
+    - [For prediction](#for-prediction)
+    - [Running](#Running)
+  - [Citation](#citation)
+
+
+## Installation
+
+### Dependencies
+
+Here is the dependencies of 
+```
+protein-bert-pytorch
+sklearn=1.2.1
+pandas=1.5.3
+numpy=1.23.5
+torch=1.12.0+cu102
+Biopython=1.81
+tqdm=4.65.0
+tensorboardX=2.6
+```
+
+We can install it manually by using the commands below:
+```bash
+conda create env -f XXX.yml
+conda activate XXX
+git clone XXX
+cd XX
+```
+
+## Usage
+Here is the pipeline for processing, encoding data, and prediction.
+
+### For prediction
+
+
+### For preprocessing
+
+
+### For training
+
+
+## Citation
+
+
+-------
+
+
+
+### step 1 preprocess
+
+
+
+### step 2 encoding
+We use `XX.py` to convert 
+```bash
+
+```
+
+### step 3 prediction
+
+```bash
+python predict.py --in <where-is-protein.fa> --out <target-dir-to-out.fa>
+```
+
+
+# By Lily
+
 
 ## 一、数据预处理
 数据收集：
@@ -16,6 +94,13 @@ https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_43/gencode.v43
 整理，截取后的mRNA序列名所对应的序列数据
 all_seq.csv mRNA序列名（enstid），氨基酸序列（20-500），mRNA序列（cds）
 ```
+
+```bash
+
+python data_preprocess.py --tissue <where-is-transcript_rna_tissue.tsv.zip> --seq <where-is-gencode.v43.pc_translations.fa.gz> --out <target-is-all_seq.csv>
+```
+
+
 ### Requirement
 ```
 numpy
