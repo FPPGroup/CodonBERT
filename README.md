@@ -33,7 +33,7 @@ tensorboardX=2.6
 
 We can install it manually by using the commands below:
 ```bash
-conda create env -f XXX.yml
+conda create env -f codonbert.yml
 conda activate XXX
 git clone XXX
 cd XX
