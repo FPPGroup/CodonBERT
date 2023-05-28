@@ -21,7 +21,6 @@ This is the code for the article "XXXX". The model is inspired by ProteinBERT an
 
 Here is the dependencies of 
 ```
-protein-bert-pytorch
 sklearn=1.2.1
 pandas=1.5.3
 numpy=1.23.5
@@ -33,7 +32,7 @@ tensorboardX=2.6
 
 We can install it manually by using the commands below:
 ```bash
-conda create env -f codonbert.yml
+conda create env -f codonbert.yaml
 conda activate XXX
 git clone XXX
 cd XX
