@@ -21,6 +21,7 @@ This is the code for the article "XXXX". The model is inspired by ProteinBERT an
 
 Here is the dependencies of 
 ```
+### Requirement
 sklearn=1.2.1
 pandas=1.5.3
 numpy=1.23.5
@@ -28,6 +29,9 @@ torch=1.12.0+cu102
 Biopython=1.81
 tqdm=4.65.0
 tensorboardX=2.6
+pandas=1.4.3
+emboss=6.6.0
+RNAfold
 ```
 
 We can install it manually by using the commands below:
@@ -161,23 +165,12 @@ py368:fix结果保存路径
 
 ## 五、mRNA序列指标计算
 功能：计算优化后序列的四个指标：CAI MFE ENC GC，并存储到CSV中
-### Requirement
 
-```
-pandas=1.4.3
-emboss=6.6.0
-RNAfold
-```
 
 ### usage
 
 ```
 python get_metrics.py -e "env_path" -f 'XXX.fasta' -o "XXX.csv"
-```
-
-### example
-```
-python get_metrics.py -e "/mnt/public2/jiangl/miniconda3/envs/RNA_index_cal" -f "/mnt/public2/jiangl/Projects/Project_plm_codon_optim/data/processed_output_data/fasta_file/epoch320_5_out_fix.fasta" -o "/mnt/public2/jiangl/Projects/Project_codon_optim/data/index_result/all_seq/epoch320_5_out_fix_result.csv"
 ```
 
 ### options:
@@ -190,6 +183,11 @@ python get_metrics.py -e "/mnt/public2/jiangl/miniconda3/envs/RNA_index_cal" -f 
                         mRNA fasta
   -o OUTPUT_PATH, --output_path OUTPUT_PATH
                         metrics result path
+```
+
+### example
+```
+python get_metrics.py -e "/mnt/public2/jiangl/miniconda3/envs/RNA_index_cal" -f "/mnt/public2/jiangl/Projects/Project_plm_codon_optim/data/processed_output_data/fasta_file/epoch320_5_out_fix.fasta" -o "/mnt/public2/jiangl/Projects/Project_codon_optim/data/index_result/all_seq/epoch320_5_out_fix_result.csv"
 ```
 
 
