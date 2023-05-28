@@ -185,10 +185,12 @@ python get_metrics.py -e "/mnt/public2/jiangl/miniconda3/envs/RNA_index_cal" -f 
 
 ```
   -h, --help            show this help message and exit
+  -e ENV_PATH, --env_path ENV_PATH
+                        environment absolute path
   -f FASTA, --fasta FASTA
-                        the seq file
+                        mRNA fasta
   -o OUTPUT_PATH, --output_path OUTPUT_PATH
-                        the save path
+                        metrics result path
 ```
 
 
