@@ -73,7 +73,7 @@ python get_metrics.py -e "env_path" -f 'XXX.fasta' -o "XXX.csv"
 
 #### example
 ```bash
-python get_metrics.py -e "/mnt/public2/jiangl/miniconda3/envs/RNA_index_cal" -f "/mnt/public2/jiangl/Projects/Project_plm_codon_optim/data/processed_output_data/fasta_file/epoch320_5_out_fix.fasta" -o "/mnt/public2/jiangl/Projects/Project_codon_optim/data/index_result/all_seq/epoch320_5_out_fix_result.csv"
+python get_metrics.py -e /mnt/public2/jiangl/miniconda3/envs/RNA_index_cal -f /mnt/public2/jiangl/Projects/Project_plm_codon_optim/data/processed_output_data/fasta_file/epoch320_5_out_fix.fasta -o /mnt/public2/jiangl/Projects/Project_codon_optim/data/index_result/all_seq/epoch320_5_out_fix_result.csv
 ```
 
 ### For training
