@@ -1,6 +1,5 @@
 import os
 os.environ['CUDA_VISIBLE_DEVICES']='0'
-# os.environ['CUDA_VISIBLE_DEVICES']='1'
 import time
 import warnings
 import numpy as np
@@ -99,14 +98,6 @@ train_mask_int = train_mask.astype(int)
 test_AA_int = test_AA_int.astype(int)
 test_DNA_int = test_DNA_int.astype(int)
 test_mask_int = test_mask.astype(int)
-
-
-# AA_int = AA_int[0:10,:].astype(int)
-# DNA_int = DNA_int[0:10,:].astype(int)
-# train_mask_int = train_mask[0:10,:].astype(int)
-# test_AA_int = test_AA_int[0:10,:].astype(int)
-# test_DNA_int = test_DNA_int[0:10,:].astype(int)
-# test_mask_int = test_mask[0:10,:].astype(int)
 
 AA_float_tensor = torch.tensor(AA_int, dtype=torch.int64)
 DNA_float_tensor = torch.tensor(DNA_int, dtype=torch.int64)
