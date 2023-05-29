@@ -11,7 +11,9 @@ This is the code for the article "XXXX". The model is inspired by ProteinBERT an
     - [Dependencies](#dependencies)
   - [Usage](#usage)
     - [For prediction](#for-prediction)
-    - [Running](#Running)
+    - [For metrica calculation](#For metrica calculation)
+    - [For preprocessing](#For preprocessing)
+    - [For training](#For training)
   - [Citation](#citation)
 
 
