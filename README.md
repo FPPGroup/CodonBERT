@@ -13,7 +13,6 @@ This is the code for the article "XXXX". The model is inspired by ProteinBERT an
     - [For prediction](#for-prediction)
     - [For metrica calculation](#for-metrica-calculation)
     - [For training](#for-training)
-    - [For preprocessing](#for-preprocessing)
   - [Citation](#citation)
 
 
@@ -78,8 +77,14 @@ python get_metrics.py -e "/mnt/public2/jiangl/miniconda3/envs/RNA_index_cal" -f 
 ```
 
 ### For training
+```bash
+python train.py -i <where-is-mRNA-seq.npy> 
+```
+#### example
+```bash
+python train.py -i /mnt/public2/jiangl/Projects/Project_plm_codon_optim/data/raw_data/TPM/train_data/csd_kidney_high_TPM.npy
+```
 
-### For preprocessing
 
 ## Citation
 
