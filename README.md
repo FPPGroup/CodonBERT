@@ -21,7 +21,6 @@ This is the code for the article "XXXX". The model is inspired by ProteinBERT an
 
 Here is the dependencies of 
 ```
-### Requirement
 sklearn=1.2.1
 pandas=1.5.3
 numpy=1.23.5
@@ -36,10 +35,10 @@ RNAfold
 
 We can install it manually by using the commands below:
 ```bash
-conda create env -f codonbert.yaml
-conda activate XXX
-git clone XXX
-cd XX
+conda create env -f codonbert.yaml -n Codon_Bert
+conda activate Codon_Bert
+git clone https://github.com/FPPGroup/CodonBERT.git
+cd CodonBERT
 ```
 
 ## Usage
@@ -47,8 +46,30 @@ Here is the pipeline for processing, encoding data, and prediction.
 
 
 ### For prediction
+```bash
+python prediction.py -f <where-is-protein.fa> -o <target-dir-to-out.fa>
+```
+### For metrica calculation
+计算优化后序列的四个指标：CAI MFE ENC GC，并存储到CSV中
+```
+python get_metrics.py -e "env_path" -f 'XXX.fasta' -o "XXX.csv"
+```
+#### options:
 
+```
+  -h, --help            show this help message and exit
+  -e ENV_PATH, --env_path ENV_PATH
+                        environment absolute path
+  -f FASTA, --fasta FASTA
+                        mRNA fasta
+  -o OUTPUT_PATH, --output_path OUTPUT_PATH
+                        metrics result path
+```
 
+#### example
+```
+python get_metrics.py -e "/mnt/public2/jiangl/miniconda3/envs/RNA_index_cal" -f "/mnt/public2/jiangl/Projects/Project_plm_codon_optim/data/processed_output_data/fasta_file/epoch320_5_out_fix.fasta" -o "/mnt/public2/jiangl/Projects/Project_codon_optim/data/index_result/all_seq/epoch320_5_out_fix_result.csv"
+```
 ### For preprocessing
 
 
@@ -74,9 +95,7 @@ We use `XX.py` to convert
 
 ### step 3 prediction
 
-```bash
-python prediction.py -f <where-is-protein.fa> -o <target-dir-to-out.fa>
-```
+
 
 
 # By Lily
