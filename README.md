@@ -47,16 +47,20 @@ Here is the pipeline for processing, encoding data, and prediction.
 
 ### For prediction
 ```bash
-python prediction.py -f <where-is-protein.fa> -o <target-dir-to-out.fa>
+python prediction.py -f <where-is-protein.fasta> -o <target-dir-to-out.fasta>
+```
+#### example
+```bash
+python prediction.py -f "/mnt/public2/jiangl/Projects/CodonBERT/test_data/test_five.fasta" /mnt/public2/jiangl/Projects/CodonBERT/test_data/result_data/test_five_result.fasta
 ```
 ### For metrica calculation
 计算优化后序列的四个指标：CAI MFE ENC GC，并存储到CSV中
-```
+```bash
 python get_metrics.py -e "env_path" -f 'XXX.fasta' -o "XXX.csv"
 ```
 #### options:
 
-```
+```bash
   -h, --help            show this help message and exit
   -e ENV_PATH, --env_path ENV_PATH
                         environment absolute path
@@ -67,7 +71,7 @@ python get_metrics.py -e "env_path" -f 'XXX.fasta' -o "XXX.csv"
 ```
 
 #### example
-```
+```bash
 python get_metrics.py -e "/mnt/public2/jiangl/miniconda3/envs/RNA_index_cal" -f "/mnt/public2/jiangl/Projects/Project_plm_codon_optim/data/processed_output_data/fasta_file/epoch320_5_out_fix.fasta" -o "/mnt/public2/jiangl/Projects/Project_codon_optim/data/index_result/all_seq/epoch320_5_out_fix_result.csv"
 ```
 ### For preprocessing
