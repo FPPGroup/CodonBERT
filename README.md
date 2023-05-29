@@ -11,9 +11,9 @@ This is the code for the article "XXXX". The model is inspired by ProteinBERT an
     - [Dependencies](#dependencies)
   - [Usage](#usage)
     - [For prediction](#for-prediction)
-    - [For metrica calculation](#For metrica calculation)
-    - [For preprocessing](#For preprocessing)
-    - [For training](#For training)
+    - [For metrica calculation](#for-metrica-calculation)
+    - [For training](#for-training)
+    - [For preprocessing](#for-preprocessing)
   - [Citation](#citation)
 
 
@@ -76,11 +76,10 @@ python get_metrics.py -e "env_path" -f 'XXX.fasta' -o "XXX.csv"
 ```bash
 python get_metrics.py -e "/mnt/public2/jiangl/miniconda3/envs/RNA_index_cal" -f "/mnt/public2/jiangl/Projects/Project_plm_codon_optim/data/processed_output_data/fasta_file/epoch320_5_out_fix.fasta" -o "/mnt/public2/jiangl/Projects/Project_codon_optim/data/index_result/all_seq/epoch320_5_out_fix_result.csv"
 ```
-### For preprocessing
-
 
 ### For training
 
+### For preprocessing
 
 ## Citation
 
