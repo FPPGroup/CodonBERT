@@ -53,7 +53,7 @@ python prediction.py -f <where-is-protein.fasta> -o <target-dir-to-out.fasta>
 ```
 #### example
 ```bash
-python prediction.py -f "/mnt/public2/jiangl/Projects/CodonBERT/test_data/test_five.fasta" "/mnt/public2/jiangl/Projects/CodonBERT/test_data/result_data/test_five_result.fasta"
+python prediction.py --f /mnt/public2/jiangl/Projects/CodonBERT/test_data/test_five.fasta -o /mnt/public2/jiangl/Projects/CodonBERT/test_data/result_data/test_five_result.fasta
 ```
 ### For metrica calculation
 计算mRNA序列的四个指标：CAI MFE ENC GC，并存储到CSV中
