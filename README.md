@@ -60,7 +60,7 @@ python prediction.py -f <where-is-protein.fasta> -o <target-dir-to-out.fasta>
 python prediction.py --f /mnt/public2/jiangl/Projects/CodonBERT/test_data/test_five.fasta -o /mnt/public2/jiangl/Projects/CodonBERT/test_data/result_data/test_five_result.fasta
 ```
 ### For metrica calculation
-计算mRNA序列的四个指标：CAI MFE ENC GC，并存储到CSV中
+Four indicators of mRNA sequence: CAI MFE ENC GC, are calculated and stored in CSV
 ```bash
 python get_metrics.py -e "env_path" -f 'XXX.fasta' -o "XXX.csv"
 ```
