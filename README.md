@@ -48,7 +48,7 @@ Here is the pipeline for processing, encoding data, and prediction.
 
 ### For prediction
 ```bash
-model download
+Download the trained model
 链接：https://pan.baidu.com/s/1_fTWgylKz9IjP0EIzPyBgQ 
 提取码：kz65
 ```
