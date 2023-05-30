@@ -57,7 +57,7 @@ python prediction.py -f <where-is-protein.fasta> -o <target-dir-to-out.fasta>
 ```
 #### example
 ```bash
-python prediction.py --f /mnt/public2/jiangl/Projects/CodonBERT/test_data/test_five.fasta -o /mnt/public2/jiangl/Projects/CodonBERT/test_data/result_data/test_five_result.fasta
+python prediction.py -f /mnt/public2/jiangl/Projects/CodonBERT/test_data/test_five.fasta -o /mnt/public2/jiangl/Projects/CodonBERT/test_data/result_data/test_five_result.fasta
 ```
 ### For metrica calculation
 Four indicators of mRNA sequence: CAI MFE ENC GC, are calculated and stored in CSV
