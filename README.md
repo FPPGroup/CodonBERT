@@ -48,6 +48,11 @@ Here is the pipeline for processing, encoding data, and prediction.
 
 ### For prediction
 ```bash
+model download
+链接：https://pan.baidu.com/s/1_fTWgylKz9IjP0EIzPyBgQ 
+提取码：kz65
+```
+```bash
 python prediction.py -f <where-is-protein.fasta> -o <target-dir-to-out.fasta>
 ```
 #### example
