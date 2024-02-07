@@ -94,7 +94,14 @@ python get_metrics.py -e CodonBERT_env -f epoch320_5_out_fix.fasta -o epoch320_5
 
 ### For training
 ```bash
-python train.py -i <where-is-mRNA-seq.npy> 
+python train.py -i <where-is-codon-seq-of-the-training-set.npy> 
+```
+#### options:
+
+```bash
+  -h, --help            show this help message and exit
+  -i FASTA , --input  FASTA
+                        The codon sequence file path of the training set
 ```
 #### example
 ```bash
