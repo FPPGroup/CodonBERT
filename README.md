@@ -57,7 +57,7 @@ python prediction.py -f <where-is-protein.fasta> -o <target-dir-to-out.fasta>
 ```
 #### example
 ```bash
-python prediction.py -f /mnt/public2/jiangl/Projects/CodonBERT/test_data/test_five.fasta -o /mnt/public2/jiangl/Projects/CodonBERT/test_data/result_data/test_five_result.fasta
+python prediction.py -f test_five.fasta -o result_data/test_five_result.fasta
 ```
 ### For metrica calculation
 Four indicators of mRNA sequence: CAI MFE ENC GC, are calculated and stored in CSV
@@ -78,7 +78,7 @@ python get_metrics.py -e "env_path" -f 'XXX.fasta' -o "XXX.csv"
 
 #### example
 ```bash
-python get_metrics.py -e /mnt/public2/jiangl/miniconda3/envs/RNA_index_cal -f /mnt/public2/jiangl/Projects/Project_plm_codon_optim/data/processed_output_data/fasta_file/epoch320_5_out_fix.fasta -o /mnt/public2/jiangl/Projects/Project_codon_optim/data/index_result/all_seq/epoch320_5_out_fix_result.csv
+python get_metrics.py -e /mnt/public2/jiangl/miniconda3/envs/CodonBERT_env -f epoch320_5_out_fix.fasta -o epoch320_5_out_fix_result.csv
 ```
 
 ### For training
@@ -87,7 +87,7 @@ python train.py -i <where-is-mRNA-seq.npy>
 ```
 #### example
 ```bash
-python train.py -i /mnt/public2/jiangl/Projects/Project_plm_codon_optim/data/raw_data/TPM/train_data/csd_kidney_high_TPM.npy
+python train.py -i csd_kidney_high_TPM.npy
 ```
 
 
