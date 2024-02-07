@@ -65,6 +65,7 @@ python prediction.py -m <where-is-model_param.pkl> -f <where-is-protein.fasta> -
                         Amino acid fasta path
   -o OUTPUT_PATH, --output_path FASTA
                         The save path
+```
 #### example
 ```bash
 python prediction.py -m kidney_1_1_CodonBert_model_param.pkl -f test_five.fasta -o result_data/test_five_result.fasta
