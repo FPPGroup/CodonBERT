@@ -60,11 +60,11 @@ python prediction.py -m <where-is-model_param.pkl> -f <where-is-protein.fasta> -
 ```bash
   -h, --help            show this help message and exit
   -m Model_param_PATH, --model PKL
-                        environment absolute path
+                        model PKL file path
   -f FASTA, --fasta FASTA
                         Amino acid fasta path
   -o OUTPUT_PATH, --output_path FASTA
-                        The save path
+                        The save file path
 ```
 #### example
 ```bash
