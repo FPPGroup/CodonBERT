@@ -1,6 +1,6 @@
 # CodonBERT
 
-This is the code for the article "XXXX". The model is inspired by ProteinBERT and build by Lili Jiang@NENU.
+This is the code for the article _CodonBert: a BERT-based architecture tailored for codon optimization using the cross-attention mechanism_.
 
 
 ## Table of Contents
@@ -49,8 +49,8 @@ Here is the pipeline for processing, encoding data, and prediction.
 ### For prediction
 ```bash
 Download the trained model
-链接：https://pan.baidu.com/s/1_fTWgylKz9IjP0EIzPyBgQ 
-提取码：kz65
+link：https://pan.baidu.com/s/1_fTWgylKz9IjP0EIzPyBgQ 
+extraction code：kz65
 ```
 ```bash
 python prediction.py -f <where-is-protein.fasta> -o <target-dir-to-out.fasta>
