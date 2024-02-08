@@ -5,7 +5,7 @@ import torch.nn.functional as FC
 from torch import nn, einsum
 from einops.layers.torch import Rearrange, Reduce
 from einops import rearrange, repeat
-from config_function import *
+from scripts.config_function import *
 
 
 def exists(val):

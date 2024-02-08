@@ -1,5 +1,4 @@
 import os
-os.environ['CUDA_VISIBLE_DEVICES']='0'
 import time
 import warnings
 import numpy as np
