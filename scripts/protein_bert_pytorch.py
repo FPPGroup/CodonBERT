@@ -250,7 +250,7 @@ class Layer(nn.Module):
         return tokens, annotation
 
 
-class ProteinBERT(nn.Module):
+class CodonBERT(nn.Module):
     def __init__(
         self,
         *,
@@ -325,7 +325,7 @@ class PretrainingWrapper(nn.Module):
         RNA_exclude_token_ids = (0, 1, 2) 
     ):
         super().__init__()
-        assert isinstance(model, ProteinBERT), 'model must be an instance of ProteinBERT'
+        assert isinstance(model, CodonBERT), 'model must be an instance of CodonBERT'
 
         self.model = model
 
@@ -365,68 +365,13 @@ class PretrainingWrapper(nn.Module):
         RNA_random_replace_token_prob_mask = get_mask_subset_with_prob(RNA_excluded_tokens_mask, self.random_replace_token_prob)
         RNA_random_tokens=torch.zeros_like(annotation)
         noised_annotation = torch.where(RNA_random_replace_token_prob_mask, RNA_random_tokens, annotation)
-       
-        if epoch<15:
-            pass
-        elif epoch<30:
-            index_list = random.sample(range(0,noised_annotation.shape[0]-1),int(noised_annotation.shape[0]*0.05))
-            noised_annotation[index_list,:]=0
-        elif epoch<45:
-            index_list = random.sample(range(0,noised_annotation.shape[0]-1),int(noised_annotation.shape[0]*0.1))
-            noised_annotation[index_list,:]=0
-        elif epoch<60:
-            index_list = random.sample(range(0,noised_annotation.shape[0]-1),int(noised_annotation.shape[0]*0.15))
-            noised_annotation[index_list,:]=0
-        elif epoch<75:
-            index_list = random.sample(range(0,noised_annotation.shape[0]-1),int(noised_annotation.shape[0]*0.2))
-            noised_annotation[index_list,:]=0
-        elif epoch<90:
-            index_list = random.sample(range(0,noised_annotation.shape[0]-1),int(noised_annotation.shape[0]*0.25))
-            noised_annotation[index_list,:]=0
-        elif epoch<105:
-            index_list = random.sample(range(0,noised_annotation.shape[0]-1),int(noised_annotation.shape[0]*0.3))
-            noised_annotation[index_list,:]=0
-        elif epoch<120:
-            index_list = random.sample(range(0,noised_annotation.shape[0]-1),int(noised_annotation.shape[0]*0.35))
-            noised_annotation[index_list,:]=0
-        elif epoch<135:
-            index_list = random.sample(range(0,noised_annotation.shape[0]-1),int(noised_annotation.shape[0]*0.4))
-            noised_annotation[index_list,:]=0
-        elif epoch<150:
-            index_list = random.sample(range(0,noised_annotation.shape[0]-1),int(noised_annotation.shape[0]*0.45))
-            noised_annotation[index_list,:]=0
-        elif epoch<165:
-            index_list = random.sample(range(0,noised_annotation.shape[0]-1),int(noised_annotation.shape[0]*0.5))
-            noised_annotation[index_list,:]=0
-        elif epoch<180:
-            index_list = random.sample(range(0,noised_annotation.shape[0]-1),int(noised_annotation.shape[0]*0.55))
-            noised_annotation[index_list,:]=0
-        elif epoch<195:
-            index_list = random.sample(range(0,noised_annotation.shape[0]-1),int(noised_annotation.shape[0]*0.6))
-            noised_annotation[index_list,:]=0
-        elif epoch<210:
-            index_list = random.sample(range(0,noised_annotation.shape[0]-1),int(noised_annotation.shape[0]*0.65))
-            noised_annotation[index_list,:]=0
-        elif epoch<225:
-            index_list = random.sample(range(0,noised_annotation.shape[0]-1),int(noised_annotation.shape[0]*0.7))
-            noised_annotation[index_list,:]=0
-        elif epoch<240:
-            index_list = random.sample(range(0,noised_annotation.shape[0]-1),int(noised_annotation.shape[0]*0.75))
-            noised_annotation[index_list,:]=0
-        elif epoch<255:
-            index_list = random.sample(range(0,noised_annotation.shape[0]-1),int(noised_annotation.shape[0]*0.8))
-            noised_annotation[index_list,:]=0
-        elif epoch<270:
-            index_list = random.sample(range(0,noised_annotation.shape[0]-1),int(noised_annotation.shape[0]*0.85))
-            noised_annotation[index_list,:]=0
-        elif epoch<285:
-            index_list = random.sample(range(0,noised_annotation.shape[0]-1),int(noised_annotation.shape[0]*0.9))
-            noised_annotation[index_list,:]=0
-        elif epoch<300:
-            index_list = random.sample(range(0,noised_annotation.shape[0]-1),int(noised_annotation.shape[0]*0.95))
-            noised_annotation[index_list,:]=0
-        elif epoch>300:
-            noised_annotation[:,:]=0
+
+        for epoch in range(15, 301, 15):
+            if epoch <= 300:
+                index_list = random.sample(range(0, noised_annotation.shape[0] - 1), int(noised_annotation.shape[0] * (epoch / 300)))
+                noised_annotation[index_list, :] = 0
+            else:
+                noised_annotation[:, :] = 0
 
         seq_logits, annotation_logits = self.model(noised_seq, noised_annotation, mask = mask)
         seq_logits = seq_logits[mask] 
