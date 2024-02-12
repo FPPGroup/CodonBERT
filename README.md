@@ -118,7 +118,7 @@ python train.py -t train_codon_sequences.npy -v validation_codon_sequences.npy
 
 ### For data preprocessing
 ```bash
-python Data_preprocessing.py -e python get_metrics.py -e "env_path" -t "transcript_rna_tissue.tsv_path" -l "gencode.v43.pc_translations.fa.gz_path" -c "gencode.v43.pc_transcripts.fa.gz_path" -o "output_path"
+python Data_preprocessing.py -e "env_path" -t "transcript_rna_tissue.tsv_path" -l "gencode.v43.pc_translations.fa.gz_path" -c "gencode.v43.pc_transcripts.fa.gz_path" -o "output_path"
 ```
 #### options:
 
@@ -147,7 +147,7 @@ python Data_preprocessing.py -e python get_metrics.py -e "env_path" -t "transcri
 ```
 #### example
 ```bash
-python Data_preprocessing.py -e /public/data0/jiangl/anaconda3/envs/CodonBert_env -t transcript_rna_tissue.tsv -l gencode.v43.pc_translations.fa.gz -c gencode.v43.pc_transcripts.fa.gz -o ./data/result
+python Data_preprocessing.py -e CodonBert_env -t transcript_rna_tissue.tsv -l gencode.v43.pc_translations.fa.gz -c gencode.v43.pc_transcripts.fa.gz -o ./data/result
 ```
 
 
