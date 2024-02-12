@@ -1,4 +1,5 @@
-name: CodonBert_env
+
+name: codonbert_env
 channels:
   - gurobi
   - pytorch
@@ -183,4 +184,3 @@ dependencies:
       - wcwidth==0.2.5
       - werkzeug==2.2.2
       - wrapt==1.14.1
-prefix: /public/data0/jiangl/anaconda3/envs/CodonBert_env

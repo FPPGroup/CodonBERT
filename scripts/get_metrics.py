@@ -5,7 +5,6 @@ import sys
 
 def set_args():
     parser = argparse.ArgumentParser(description='NanoSTR: a STR genotyping tool for forensic STR')      
-    parser.add_argument('-e', '--env_path', help='environment absolute path',required = True, type = str)
     parser.add_argument('-f', '--fasta', help='mRNA fasta',required = True, type = str)            
     parser.add_argument('-o', '--output_path', help='metrics result path',required = True, type = str)
     args = parser.parse_args()     
@@ -78,23 +77,22 @@ def merge_func(col_names, *dicts):
 if __name__ == '__main__':
     args = set_args()
     fasta_path = args.fasta
-    env_path = args.env_path
     temp_file   = "temp.txt"
     fasta_dict = fasta_reader(fasta_path)
     gc_dict = GC_con(fasta_dict)
-    command_line = env_path+"/bin/RNAfold -p --MEA < %s > %s" % (fasta_path, temp_file)
+    command_line = "RNAfold -p --MEA < %s > %s" % (fasta_path, temp_file)
     os.system(command_line)
     mfe_dict = extract_MFE(temp_file) 
     os.remove(temp_file)
     if any(name.endswith(('.ps')) for name in os.listdir(sys.path[0])):
         r = os.system('/usr/bin/find ./ -type f -name "*.ps" | xargs /usr/bin/rm')
 
-    command_line = env_path+"/bin/_cai -seqall %s -cfile Ehuman.cut -outfile %s" % (fasta_path, temp_file)
+    command_line = "_cai -seqall %s -cfile Ehuman.cut -outfile %s" % (fasta_path, temp_file)
     os.system(command_line)
     cai_dict = extract_cai(temp_file)
     os.remove(temp_file)
 
-    command_line = env_path+"/bin/_chips -seqall %s -outfile %s -nosum" % (fasta_path, temp_file)
+    command_line = "_chips -seqall %s -outfile %s -nosum" % (fasta_path, temp_file)
     os.system(command_line)
     enc_dict = extract_enc(temp_file)
     os.remove(temp_file)
