@@ -12,8 +12,9 @@ import argparse
 
 def set_args():
     parser = argparse.ArgumentParser(description='CodonBert:model train')
-    parser.add_argument('-t', '--train', help='the train mRNA seq file <.npy>',required = True, type = str)
-    parser.add_argument('-v', '--validation', help='the validation mRNA seq file <.npy>',required = True, type = str)
+    parser.add_argument('-t', '--train', help='the train mRNA seq file <.fasta>',required = True, type = str)
+    parser.add_argument('-v', '--validation', help='the validation mRNA seq file <.fasta>',required = True, type = str)
+    parser.add_argument('-m', '--model', help='the model path', required=True, type=str)
     args = parser.parse_args()
     return args
 
@@ -80,36 +81,26 @@ if __name__ == '__main__':
     args = set_args()
     train_DNA_file = args.train
     test_DNA_file = args.validation
+    model_save_path = args.model
 
-    train_DNA_seq_dataset = np.load(train_DNA_file,allow_pickle=True)
-    test_DNA_seq_dataset = np.load(test_DNA_file,allow_pickle=True)
+    train_Seq = []
+    for seqName, seq in readFa(train_DNA_file):
+        train_Seq.append(seq)
+    train_DNA_seq_dataset = np.array(train_Seq, dtype=object)
+    test_Seq = []
+    for seqName, seq in readFa(test_DNA_file):
+        test_Seq.append(seq)
+    test_DNA_seq_dataset = np.array(test_Seq, dtype=object)
 
     train_AA_int_list, train_DNA_int_result, train_sample_weigths = DNA_encode_input(train_DNA_seq_dataset)
     test_AA_int_list, test_DNA_int_result, test_sample_weigths = DNA_encode_input(test_DNA_seq_dataset)
 
-
-    train_AA = train_AA_int_list
-    train_DNA = train_DNA_int_result
-    train_mask = train_sample_weigths
-
-    test_AA = test_AA_int_list
-    test_DNA = test_DNA_int_result
-    test_mask = test_sample_weigths
-
-    AA_int = np.array(train_AA)
-    DNA_int = np.array(train_DNA)
-    test_AA_int = np.array(test_AA)
-    test_DNA_int = np.array(test_DNA)
-    train_mask = train_mask
-    test_mask = test_mask
-
-
-    AA_int = AA_int.astype(int)
-    DNA_int = DNA_int.astype(int)
-    train_mask_int = train_mask.astype(int)
-    test_AA_int = test_AA_int.astype(int)
-    test_DNA_int = test_DNA_int.astype(int)
-    test_mask_int = test_mask.astype(int)
+    AA_int = np.array(train_AA_int_list).astype(int)
+    DNA_int = np.array(train_DNA_int_result).astype(int)
+    test_AA_int = np.array(test_AA_int_list).astype(int)
+    test_DNA_int = np.array(test_DNA_int_result).astype(int)
+    train_mask_int = train_sample_weigths.astype(int)
+    test_mask_int = test_sample_weigths.astype(int)
 
     AA_float_tensor = torch.tensor(AA_int, dtype=torch.int64)
     DNA_float_tensor = torch.tensor(DNA_int, dtype=torch.int64)
@@ -124,7 +115,7 @@ if __name__ == '__main__':
     test_train_iter = data.DataLoader(dataset=test_torch_dataset, batch_size=1, shuffle=True, num_workers=2)
 
     criterion = nn.CrossEntropyLoss()
-    optimizer = torch.optim.Adam(model.parameters(), lr=3e-4)
+    optimizer = torch.optim.Adam(model.parameters(), lr=lr_init)
     scheduler= torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0.1, patience=10, verbose=False, threshold=0.0001, threshold_mode='rel', cooldown=0, min_lr=0, eps=1e-08)
 
 
@@ -148,7 +139,7 @@ if __name__ == '__main__':
             ACC_tensorboard_ind, ACC_writer = AA_acc(model, test_train_iter, ACC_tensorboard_ind, ACC_writer)                                                                                                                    
             end_time = time.time()
             if (epoch+1)==320:
-                torch.save(model.state_dict(), log_dir+'_'+str(epoch+1)+'_model_param.pt')
+                torch.save(model.state_dict(), model_save_path+'_'+str(epoch+1)+'_model_param.pt')
             elif (epoch+1)==N_EPOCHS:
-                torch.save(model.state_dict(), log_dir+'_'+str(epoch+1)+'_model_param.pt')
+                torch.save(model.state_dict(), model_save_path+'_'+str(epoch+1)+'_model_param.pt')
         

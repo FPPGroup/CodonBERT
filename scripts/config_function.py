@@ -40,11 +40,11 @@ fix_AA_codon = {'G':'GGC','A':'GCC','V':'GTC','L':'CTG','I':'ATC','P':'CCG','F':
 
 
 seq_len = 2048
-is_binary = False
 N_EPOCHS = 320
+lr_init = 3e-4
 batch_size = 12
+is_binary = False
 CodonBERT_path = '.'
-log_dir = CodonBERT_path+"model/2024_0130/custom_kidney_CodonBert_model"
 writer = SummaryWriter(CodonBERT_path+'logs/2023_0726/train_epoch320-batch12')
 valid_writer = SummaryWriter(CodonBERT_path+'logs/2023_0726/valid_epoch320-batch12')
 ACC_writer = SummaryWriter(CodonBERT_path+'logs/2023_0726/acc_epoch320-batch1')
