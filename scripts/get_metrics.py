@@ -4,7 +4,7 @@ import argparse
 import sys
 
 def set_args():
-    parser = argparse.ArgumentParser(description='NanoSTR: a STR genotyping tool for forensic STR')      
+    parser = argparse.ArgumentParser(description='calculate MFE/CAI metrics')      
     parser.add_argument('-f', '--fasta', help='mRNA fasta',required = True, type = str)            
     parser.add_argument('-o', '--output_path', help='metrics result path',required = True, type = str)
     args = parser.parse_args()     

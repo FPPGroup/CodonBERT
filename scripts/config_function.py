@@ -1,10 +1,9 @@
 import os
-# os.environ['CUDA_VISIBLE_DEVICES']='0'
-os.environ['CUDA_VISIBLE_DEVICES']='2'
 import warnings
 import numpy as np
 from tensorboardX import SummaryWriter
 import torch.nn.functional as FC
+import torch
 
 warnings.filterwarnings("ignore")
 
@@ -40,6 +39,25 @@ homonym_codon = {'G':G,'A':A,'V':V,'L':L,'I':I,'P':P,'F':F,'Y':Y,'W':W,'S':S,'T'
 fix_AA_codon = {'G':'GGC','A':'GCC','V':'GTC','L':'CTG','I':'ATC','P':'CCG','F':'TTC','Y':'TAC','W':'TGG','S':'AGC','T':'ACG','M':'ATG','C':'TGC','N':'AAC','Q':'CAG','D':'GAC','E':'GAG','K':'AAG','R':'CGC','H':'CAC','X':'TAG'} 
 
 
+seq_len = 2048
+is_binary = False
+N_EPOCHS = 320
+batch_size = 12
+CodonBERT_path = '.'
+log_dir = CodonBERT_path+"model/2024_0130/custom_kidney_CodonBert_model"
+writer = SummaryWriter(CodonBERT_path+'logs/2023_0726/train_epoch320-batch12')
+valid_writer = SummaryWriter(CodonBERT_path+'logs/2023_0726/valid_epoch320-batch12')
+ACC_writer = SummaryWriter(CodonBERT_path+'logs/2023_0726/acc_epoch320-batch1')
+tensorboard_ind = 0
+valid_tensorboard_ind = 0
+ACC_tensorboard_ind = 0
+
+
+global device
+if torch.cuda.is_available():
+    device = 'cuda'
+else:
+    device = 'cpu'
 
 
 def convert_list_to_dict(dict_raw_int,value):
@@ -132,6 +150,7 @@ def encode_seq_Y_68(seqs, seq_len, is_binary):
         sample_weigths = np.expand_dims(sample_weigths, axis = -1)
     return Y, sample_weigths
 
+
 def sample_DNA_to_int(DNA_seq,max_length):
     start = 0
     end = 3
@@ -145,7 +164,8 @@ def sample_DNA_to_int(DNA_seq,max_length):
         integer_encoded.append(0)
     return integer_encoded
 
-def create_mask(seqs):
+
+def create_mask(seqs, seq_len):
     Y = np.zeros((len(seqs), seq_len), dtype = int)
     sample_weigths = np.zeros((len(seqs), seq_len))
     for i, seq in enumerate(seqs): 
@@ -157,6 +177,7 @@ def create_mask(seqs):
             Y[i, r] = 0
         sample_weigths[i, 1:(len(seq) + 1)] = 1
     return sample_weigths
+
 
 def readFa(fa):
     with open(fa,'r') as FA:
@@ -174,11 +195,12 @@ def readFa(fa):
             if not line:
                 break
 
+
 def self_evaluate(model, test_train_iter, valid_tensorboard_ind, valid_writer):
       for ind, (src, trg, mask) in enumerate(test_train_iter):
-            src = src.to('cuda')
-            trg = trg.to('cuda')
-            mask = mask.to('cuda')
+            src = src.to(device)
+            trg = trg.to(device)
+            mask = mask.to(device)
             zero_trg = trg.clone()
             zero_trg[:,:]=0
             seq_logits, annotation_logits = model(src, zero_trg, mask = mask) 
@@ -194,18 +216,15 @@ def self_evaluate(model, test_train_iter, valid_tensorboard_ind, valid_writer):
             valid_writer.add_scalar('valid_seq_loss',valid_seq_loss.item(),valid_tensorboard_ind)
             valid_writer.add_scalar('valid_annotation_loss',valid_annotation_loss.item(),valid_tensorboard_ind)
             valid_tensorboard_ind += 1
-
-            
-
-            
       return valid_tensorboard_ind, valid_writer
+
 
 def AA_acc(model, test_train_iter, ACC_tensorboard_ind, ACC_writer):
     AA_acc_all = 0
     for ind, (src, trg, mask) in enumerate(test_train_iter):
-        src = src.to('cuda')
-        trg = trg.to('cuda')
-        mask = mask.to('cuda')
+        src = src.to(device)
+        trg = trg.to(device)
+        mask = mask.to(device)
         zero_trg = trg.clone()
         zero_trg[:,:]=0
         seq_logits, annotation_logits = model(src, zero_trg, mask = mask) 
@@ -231,15 +250,5 @@ def AA_acc(model, test_train_iter, ACC_tensorboard_ind, ACC_writer):
 
     return ACC_tensorboard_ind, ACC_writer
 
-seq_len = 2048
-is_binary = False
-N_EPOCHS = 320
-batch_size = 12
-CodonBERT_path = '.'
-log_dir = CodonBERT_path+"model/2024_0130/custom_kidney_CodonBert_model"
-writer = SummaryWriter(CodonBERT_path+'logs/2023_0726/train_epoch320-batch12')
-valid_writer = SummaryWriter(CodonBERT_path+'logs/2023_0726/valid_epoch320-batch12')
-ACC_writer = SummaryWriter(CodonBERT_path+'logs/2023_0726/acc_epoch320-batch1')
-tensorboard_ind = 0
-valid_tensorboard_ind = 0
-ACC_tensorboard_ind = 0
+
+
