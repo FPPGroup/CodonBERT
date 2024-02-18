@@ -4,7 +4,7 @@ This is the code for the article _CodonBert: a BERT-based architecture tailored 
 
 CodonBERT requires amino acid sequences in FASTA format as input, and predicted the optimizaed codon sequences. Four trained models based on high-TPM data (with various proporations of JCAT-optimized sequences) are provided in this repository. The users can directly use `predict.py` to conduct codon optimization. Notably, we provided the `train.py` for developers to train a cusom model on specific data. In current version, the hyperparameters of model can only be modified in the source code. The graphic user interface is under developing till Apr. 2024. In the meantime, we're processing the tissue-specific data to realize a tissue-speific optimization tool.
 
-[figure]
+[figure](https://github.com/FPPGroup/CodonBERT/blob/main/figures/2024.01.24-figure1.jpg)
 
 
 ## Table of Contents
