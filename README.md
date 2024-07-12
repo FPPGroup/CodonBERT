@@ -1,6 +1,6 @@
 # CodonBERT
 
-This is the code for the article _CodonBert: a BERT-based architecture tailored for codon optimization using the cross-attention mechanism_. CodonBERT is a flexible deep-learning model for codon optimization, which is inspired by ProteinBERT (Brandes et al., 2022). We made crucial modifications to build the CodonBERT. As for architecutre, (1) the right-side network was rebuilt to match the encoder on the left-side; (2) codon tokens are now used as both keys and values in the cross-attention mechanism, while the protein sequence serves as the query. In this way, CodonBERT learns codon usage preferences and contextual combination preferences via randomly masked codon tokens. 
+This is the code for the article [_CodonBert: a BERT-based architecture tailored for codon optimization using the cross-attention mechanism_](https://doi.org/10.1093/bioinformatics/btae330). CodonBERT is a flexible deep-learning model for codon optimization, which is inspired by ProteinBERT (Brandes et al., 2022). We made crucial modifications to build the CodonBERT. As for architecutre, (1) the right-side network was rebuilt to match the encoder on the left-side; (2) codon tokens are now used as both keys and values in the cross-attention mechanism, while the protein sequence serves as the query. In this way, CodonBERT learns codon usage preferences and contextual combination preferences via randomly masked codon tokens. 
 
 CodonBERT requires amino acid sequences in FASTA format as input, and predicted the optimizaed codon sequences. Four trained models based on high-TPM data (with various proporations of JCAT-optimized sequences) are provided in this repository. The users can directly use `predict.py` to conduct codon optimization. Notably, we provided the `train.py` for developers to train a cusom model on specific data. In current version, the hyperparameters of model can only be modified in the source code. The graphic user interface is under developing till Apr. 2024. In the meantime, we're processing the tissue-specific data to realize a tissue-speific optimization tool.
 
@@ -124,6 +124,10 @@ python ./scripts/data_preocessing.py -t $path_transcript_rna_tissue_tsv_file -l 
 
 
 ## Citation
+
+Zilin Ren, Lili Jiang, Yaxin Di, Dufei Zhang, Jianli Gong, Jianting Gong, Qiwei Jiang, Zhiguo Fu, Pingping Sun, Bo Zhou, Ming Ni, CodonBERT: a BERT-based architecture tailored for codon optimization using the cross-attention mechanism, Bioinformatics, Volume 40, Issue 7, July 2024, btae330, https://doi.org/10.1093/bioinformatics/btae330
+
+## Reference
 Brandes,N. et al. (2022) ProteinBERT: a universal deep-learning model of protein sequence and function. Bioinformatics, 38, 2102–2110.
 
 Lorenz,R. et al. (2011) ViennaRNA Package 2.0. Algorithms for Molecular Biology, 6, 26.
